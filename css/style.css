@@ -57,3 +57,12 @@ body {
 	height: 15px;
 	border: 1px solid white;
 }
+
+.navigation {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.navigation #next{
+	float: right;
+}
