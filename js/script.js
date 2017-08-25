@@ -5,6 +5,7 @@ $(function() {
 	var indicatorsContainer = $(".indicators-container");
 	var buttonPrevious = $(".navigation").find("#previous");
 	var buttonNext = $(".navigation").find("#next");
+	var jumpOffset = 0;
 	var currentPicture = -1;
 	var direction = -1;
 
@@ -21,9 +22,15 @@ $(function() {
 		direction = 1;
 		changeSlides(direction);
 	});
+
 	indicatorsContainer.click(function(e){
+		console.log(e.target);
 		var clickedIndicator = e.target;
-		//tutaj skonczylem
+		var indexOfPicture = $(clickedIndicator).index();
+		if (indexOfPicture != currentPicture) {
+			jumpOffset = currentPicture - indexOfPicture;
+			moveToClickedPicture();
+		}
 	});
 
 	function doCount() {
@@ -49,16 +56,33 @@ $(function() {
 	function changeSlides(direction) {
 		if (direction < 0) {
 			carouselList.animate({'marginLeft': -400 }, 500, moveLeftSide);
-			}
-		else {
+			} else {
 			carouselList.animate({'marginLeft': 400 }, 500, moveRightSide);
 		}
 		updateIndicators();
 	}
 
+	function moveToClickedPicture() {
+		var jump = Math.abs(jumpOffset);
+		if (jumpOffset < 0) {
+			for (var i = 0 ; i < jump; i++){
+				carouselList.animate({'marginLeft': -400 }, 150, moveLeftSide);
+			}
+		} else {
+			for (var i = 0 ; i < jump; i++){
+				carouselList.animate({'marginLeft': 400 }, 150, moveRightSide);
+			}
+		}
+		updateIndicators();
+		jumpOffset = 0;
+	}
+
 	function updateIndicators(){
 		clearIndicators();
-		currentPicture -= direction;
+		if (jumpOffset === 0 ) currentPicture -= direction;
+		else {
+			 currentPicture -= jumpOffset;
+		}
 		if (currentPicture > pictureCount - 1) currentPicture = 0;
 		if (currentPicture < 0) currentPicture = pictureCount - 1;
 		markNextIndicator(currentPicture);
