@@ -52,6 +52,7 @@ $(function() {
 		carouselList.css({marginLeft:0});
 	}
 
+	//zmiana w prawo wyglada brzydko... czy jest to problem z float czy z czyms innym ?
 	function changeSlides(direction) {
 		if (direction < 0) {
 			carouselList.animate({'marginLeft': -400 }, 500, moveLeftSide);
