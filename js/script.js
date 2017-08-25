@@ -24,7 +24,6 @@ $(function() {
 	});
 
 	indicatorsContainer.click(function(e){
-		console.log(e.target);
 		var clickedIndicator = e.target;
 		var indexOfPicture = $(clickedIndicator).index();
 		if (indexOfPicture != currentPicture) {
