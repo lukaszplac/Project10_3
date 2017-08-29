@@ -23,7 +23,6 @@ $(function() {
 	});
 	indicatorsContainer.click(function(e){
 		var clickedIndicator = e.target;
-		//tutaj skonczylem
 	});
 
 	function doCount() {
