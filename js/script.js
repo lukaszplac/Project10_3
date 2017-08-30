@@ -67,7 +67,7 @@ $(function() {
 	function changeSlides(direction) {
 		if (direction < 0) {
 			carouselList.animate({'marginLeft': -400 }, 500, moveLeftSide);
-			} else {
+			} else {		
 			moveRightSide();
 			carouselList.animate({'marginLeft': 0 }, 500);
 		}
@@ -83,7 +83,7 @@ $(function() {
 		} else {
 			for (var i = 0 ; i < jump; i++){
 				moveRightSide();
-				carouselList.animate({'marginLeft': 0 }, 150);
+				carouselList.animate({'marginLeft': 0 }, 150);				
 			}
 		}
 		updateIndicators();
